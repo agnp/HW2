@@ -1,0 +1,292 @@
+
+/* General */
+body {
+    background: rgb(204, 228, 246);
+    margin: 0;
+    font-size: 1.1em;
+    font-family: Helvetica, sans-serif;
+    color: rgb(36, 42, 81);
+    text-align: left;
+    display: grid;
+    grid-gap: 10px;
+        grid-template-areas:
+        "header"
+        "hero"
+        "body"
+        "footer"
+}
+
+/* Describe headings */
+h3 {
+    font-family: Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: rgb(36, 42, 81);
+    text-align: center;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+} 
+
+h4 {
+    font-family: Helvetica, sans-serif;
+    font-size: 1.2em;
+    color: rgb(239, 199, 228);
+    text-align: center;
+    margin-block-start: 0.2em;
+    margin-block-end: 0.2em;
+} 
+
+/* HEADER */
+header {
+    background: rgb(73, 92, 178);
+    padding: 10px;
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "brand brand"
+        "nav tools";
+}
+
+header .brand {
+    grid-area: brand;
+}
+
+header .nav {
+    grid-area: nav;
+}
+
+header ul {
+    background: rgb(73, 92, 178);
+    list-style: none;
+}
+
+header ul li {
+	color: #fff;
+    background: rgb(73, 92, 178);
+	float: left;
+    padding: 10px;
+	position: relative;
+	margin-right: 1px;
+	text-decoration: none;
+	transition-duration: 0.5s;
+}
+
+header ul li ul li {
+    display: block;
+}
+
+header ul li a {
+	color: #fff;
+}
+
+header ul li:hover,
+header ul li:focus-within {
+    background: rgb(239, 199, 228);
+	cursor: pointer;
+    transform: scale(1.0);
+    box-shadow: 7px 10px 8px 1px rgba(0,0,0,0.2);
+    padding: 15px;
+}
+
+header li:focus-within a {
+	outline: none;
+}
+
+header .tools {
+    grid-area: tools;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+    text-shadow: 1px 1px 7px #4d439b;
+
+}
+
+/* HERO */
+.hero {
+    padding: 10px;
+    grid-area: hero;
+	justify-self: center;
+    align-items: center;
+    text-align: center;
+    background: rgb(187, 175, 211);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+        "feature"       
+        "action";
+}
+
+.hero .action {
+    text-shadow: 1px 1px 7px #4d439b;
+    grid-area: action;
+    padding: 18px;
+    background: rgb(204, 228, 246);
+}
+
+.hero .feature {
+    grid-area: feature;
+}
+
+/* BODY */
+main {
+    background: rgb(187, 175, 211);
+    padding: 10px;
+    grid-area: body;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+    grid-template-areas: 
+        "feature"
+        "ad"
+        "listing";
+}
+
+main .feature {
+    background: rgb(204, 228, 246);
+    grid-area: feature;
+}
+
+main .mobile-ad {
+    grid-area: ad;
+}
+
+main .listing {
+    background: rgb(204, 228, 246);
+    grid-area: listing;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    grid-area: footer;
+    font-size: 0.8em;
+    background: rgb(73, 92, 178);
+}
+
+/* Hide Sections which are not part of mobile */
+.desktop-ad {
+    grid-area: ad;
+    display: none;
+    }
+
+.hero .feature {
+    display: none;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background: rgb(204, 228, 246);
+    grid-area: sidebar;
+    display: none;
+}
+
+.sidebar .feature {
+    background: rgb(239, 199, 228);
+    height: 100%;
+    
+}
+
+/* AD */
+.mobile-ad img {
+    vertical-align: top;
+    width: 100%;
+}
+
+.desktop-ad img {
+    vertical-align: top;
+    width: 350px;
+}
+
+.mobile-ad:hover {
+    opacity: 0.5;
+}
+
+.desktop-ad:hover {
+    opacity: 0.5;
+}
+
+/* TABLET LAYOUT */
+@media (min-width: 576px) {
+    body {
+        grid-template-rows: auto auto 1fr auto auto;
+        grid-template-areas:
+            "header"
+            "hero"
+            "body"
+            "sidebar"
+            "footer";
+    }
+
+    /* Change Header Layout */
+    header {
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            "brand nav tools";
+    }
+
+    /* Change Hero Layout */
+    .hero {
+        grid-template-areas:
+            "feature"
+            "action";
+    }
+
+    .hero .feature {
+        display: block;
+    }
+
+    /* Change Body Layout */
+    main {
+        grid-template-columns: 1fr 200px;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "feature ad"
+            "listing listing";
+    }
+
+    /* Change Sidebar Layout */
+    .sidebar {
+        display: grid;
+    }
+
+    .mobile-ad img {
+        width: 200px;
+    }
+}
+
+/* DESKTOP LAYOUT */
+@media (min-width: 992px) {
+    body {
+        grid-template-columns: 1fr 350px;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+            "header header"
+            "hero ad"
+            "body sidebar"
+            "footer footer"
+    }
+
+    /* Change Hero Layout */
+    .hero {
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+            "feature action"
+    }
+
+    /* Change Body Layout */
+    main {
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+            "feature listing"
+    }
+
+    .mobile-ad {
+        display: none;
+    }
+
+    .desktop-ad {
+        display: block;
+    }
+}
